@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import Prism from "prismjs";
+import "./prism.css";
+import "./App.css";
+import CodeBlock from "./CodeBlock";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [language, setLanguage] = useState("javascript");
+	const [input, changeInput] = useState("");
+	useEffect(() => {
+		Prism.highlightAll();
+	}, []);
+
+	return (
+		<main>
+			<h1 className="text-[4rem] bold text-blue-600 text-center mt-5">
+				Hello World!
+			</h1>
+			<div className="flex flex-col justify-center items-center h-[70vh]">
+				<div className="flex flex-row">
+					<button
+						className="self-center px-5 py-3 bg-blue-400 shadow-lg rounded-md"
+						onClick={() => {
+							if (language === "javascript") setLanguage("css");
+							else setLanguage("javascript");
+						}}>
+						Press Me to change from {language}
+					</button>
+					<input
+						className="w-[25%]"
+						placeholder="Enter Text..."
+						onChange={(event) => {
+							changeInput(event.target.value);
+						}}></input>
+				</div>
+				<CodeBlock language={language} code={input} />
+			</div>
+		</main>
+	);
 }
 
 export default App;
