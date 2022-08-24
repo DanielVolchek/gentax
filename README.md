@@ -2,7 +2,7 @@
 
 View different Prism themes
 
-I built this without realizing that prism already has this functionality on it's docs website
+I built this without realizing that prism already has this functionality on its docs website
 
 Oh well ¯\\\_(ツ)\_/¯
 
